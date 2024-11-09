@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HECATE on River</title>
+    <description>Every failure is leading towards success.</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sat, 09 Nov 2024 17:23:38 +0800</pubDate>
+    <lastBuildDate>Sat, 09 Nov 2024 17:23:38 +0800</lastBuildDate>
+    <generator>Jekyll v4.3.4</generator>
+    
+      <item>
+        <title>Hello &amp; Welcome</title>
+        <description>&lt;h1 id=&quot;欢迎页面&quot;&gt;欢迎页面&lt;/h1&gt;
+
+&lt;h2 id=&quot;欢迎来到我们的网站&quot;&gt;欢迎来到我们的网站！&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;关于我&quot;&gt;关于我&lt;/h3&gt;
+
+&lt;p&gt;专注边缘计算相关内容，学习中…&lt;/p&gt;
+
+&lt;h3 id=&quot;可能出现的内容&quot;&gt;可能出现的内容&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;深度学习&lt;/strong&gt;：视觉检测相关技术分析和实现&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;边缘计算&lt;/strong&gt;：操作系统与嵌入式开发&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;碎碎念&lt;/strong&gt;：APP, 游戏, 任何有趣的技术&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;最新动态&quot;&gt;最新动态&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;2024年11月&lt;/strong&gt;：Welcome!&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Sat, 09 Nov 2024 16:24:00 +0800</pubDate>
+        <link>http://localhost:4000/2024/11/09/Hello/</link>
+        <guid isPermaLink="true">http://localhost:4000/2024/11/09/Hello/</guid>
+        
+        <category>welcome</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Xv6-基础入门</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;手势在用户交互中有着举足轻重的作用，这篇文字简单的介绍了iOS中的手势，并通过手势对控件进行变形处理。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;手势&quot;&gt;手势&lt;/h1&gt;
+
+&lt;p&gt;iOS手势分为下面这几种：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;UITapGestureRecognizer（点按）&lt;/li&gt;
+  &lt;li&gt;UIPanGestureRecognizer（拖动）&lt;/li&gt;
+  &lt;li&gt;UIScreenEdgePanGestureRecognizer (边缘拖动)&lt;/li&gt;
+  &lt;li&gt;UIPinchGestureRecognizer（捏合）&lt;/li&gt;
+  &lt;li&gt;UIRotationGestureRecognizer（旋转）&lt;/li&gt;
+  &lt;li&gt;UILongPressGestureRecognizer（长按）&lt;/li&gt;
+  &lt;li&gt;​UISwipeGestureRecognizer（轻扫）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这些手势大都继承于&lt;strong&gt;UIGestureRecognizer&lt;/strong&gt;类，（&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UIScreenEdgePanGestureRecognizer&lt;/code&gt;继承于&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UIPanGestureRecognizer&lt;/code&gt;类）,&lt;/p&gt;
+
+&lt;p&gt;需要说明的是这些手势只有一个是&lt;strong&gt;离散型手势&lt;/strong&gt;，那就是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UITapGestureRecognizer&lt;/code&gt;，一旦识别就无法取消，而且只会调用一次手势操作事件。&lt;/p&gt;
+
+&lt;p&gt;换句话说其他手势是&lt;strong&gt;连续型手势&lt;/strong&gt;，而连续型手势的特点就是：会多次调用手势操作事件，而且在连续手势识别后可以取消手势。&lt;/p&gt;
+
+&lt;p&gt;从下图可以看出两者调用操作事件的次数是不同的：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/006tNc79gw1fb0neee6mlj30dw0aldgf.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这些手势类有着以下共同的方法:&lt;/p&gt;
+
+&lt;p&gt;创建方法：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- (instancetype)initWithTarget:(nullable id)target action:(nullable SEL)action;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;移除方法：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- (void)removeTarget:(nullable id)target action:(nullable SEL)action;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;添加事件：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- (void)addTarget:(id)target action:(SEL)action;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;还有下面这些属性等：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@property(nonatomic,readonly) UIGestureRecognizerState state;// 手势状态
+
+typedef NS_ENUM(NSInteger, UIGestureRecognizerState) {
+     UIGestureRecognizerStatePossible,   // 尚未识别是何种手势操作（但可能已经触发了触摸事件），默认状态
+     UIGestureRecognizerStateBegan,      // 手势已经开始，此时已经被识别，但是这个过程中可能发生变化，手势操作尚未完成
+     UIGestureRecognizerStateChanged,    // 手势状态发生转变
+     UIGestureRecognizerStateEnded,      // 手势识别操作完成（此时已经松开手指）
+     UIGestureRecognizerStateCancelled,  // 手势被取消，恢复到默认状态
+     UIGestureRecognizerStateFailed,     // 手势识别失败，恢复到默认状态
+     UIGestureRecognizerStateRecognized = UIGestureRecognizerStateEnded // 手势识别完成，同UIGestureRecognizerStateEnded
+ };
+
+@property(nullable,nonatomic,weak) id &amp;lt;UIGestureRecognizerDelegate&amp;gt; delegate; // 代理
+
+@property(nonatomic, getter=isEnabled) BOOL enabled; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;当然我们也可以自定义手势来实现特殊的需求，关于自定义手势可以看&lt;a href=&quot;http://blog.csdn.net/mmoaay/article/details/47355709&quot;&gt;这篇博客&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;接下来我们来看看这些常用手势的用法.&lt;/p&gt;
+
+&lt;h4 id=&quot;uitapgesturerecognizer点按&quot;&gt;UITapGestureRecognizer（点按）&lt;/h4&gt;
+
+&lt;p&gt;Tap手势有两个属性，&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;numberOfTapsRequired&lt;/li&gt;
+  &lt;li&gt;numberOfTouchesRequired：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;numberOfTapsRequired&lt;/code&gt;为触发事件需要点击的次数，默认是1；&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;numberOfTouchesRequired&lt;/code&gt;为触发事件需要的几个手指点按，默认是1；&lt;/p&gt;
+
+&lt;p&gt;若都设置为2，就需要&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;两个&lt;/code&gt;手指同时点按&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;2次&lt;/code&gt;才会触发事件。&lt;/p&gt;
+
+&lt;p&gt;Tap手势也是我们最常用的手势之一, 比如点击ImageView跳转到其他界面，或者双击图片放大缩小等。&lt;/p&gt;
+
+&lt;p&gt;创建：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+    tap.numberOfTapsRequired = 2;
+    tap.numberOfTouchesRequired = 1;
+    [self.imageView addGestureRecognizer:tap];
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;uipangesturerecognizer拖动&quot;&gt;UIPanGestureRecognizer（拖动）&lt;/h4&gt;
+
+&lt;p&gt;Pan手势的属性和方法：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;@property (nonatomic)          NSUInteger minimumNumberOfTouches __TVOS_PROHIBITED;&lt;/li&gt;
+  &lt;li&gt;@property (nonatomic)          NSUInteger minimumNumberOfTouches __TVOS_PROHIBITED;&lt;/li&gt;
+  &lt;li&gt;-(CGPoint)translationInView:(nullable UIView *)view;&lt;/li&gt;
+  &lt;li&gt;-(void)setTranslation:(CGPoint)translation inView:(nullable UIView *)view;&lt;/li&gt;
+  &lt;li&gt;-(CGPoint)velocityInView:(nullable UIView *)view;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;translationInView:&lt;/code&gt;方法获取&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View&lt;/code&gt;的偏移量；&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setTranslation:&lt;/code&gt;方法设置手势的偏移量；&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;velocityInView:&lt;/code&gt;方法获取速度；&lt;/p&gt;
+
+&lt;p&gt;所以手势的创建方法都类似，这里就不在一一列举了。&lt;/p&gt;
+
+&lt;h4 id=&quot;uiscreenedgepangesturerecognizer-边缘拖动&quot;&gt;UIScreenEdgePanGestureRecognizer (边缘拖动)&lt;/h4&gt;
+
+&lt;p&gt;ScreenEdgePan继承于&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UIPanGestureRecognizer&lt;/code&gt;，在屏幕边缘滑动才会触发&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;@property (readwrite, nonatomic, assign) UIRectEdge edges;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;edges&lt;/code&gt;为指定边缘拖动触发的边，是一个枚举：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;typedef NS_OPTIONS(NSUInteger, UIRectEdge) {
+    UIRectEdgeNone   = 0,
+    UIRectEdgeTop    = 1 &amp;lt;&amp;lt; 0,
+    UIRectEdgeLeft   = 1 &amp;lt;&amp;lt; 1,
+    UIRectEdgeBottom = 1 &amp;lt;&amp;lt; 2,
+    UIRectEdgeRight  = 1 &amp;lt;&amp;lt; 3,
+    UIRectEdgeAll    = UIRectEdgeTop | UIRectEdgeLeft | UIRectEdgeBottom | UIRectEdgeRight
+} NS_ENUM_AVAILABLE_IOS(7_0);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;其他方法和Tap手势一致，主要用于像左右抽屉视图的变换等处理。&lt;/p&gt;
+
+&lt;h4 id=&quot;uipinchgesturerecognizer捏合&quot;&gt;UIPinchGestureRecognizer（捏合）&lt;/h4&gt;
+&lt;p&gt;Pinch手势有两个属性：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;@property (nonatomic)          CGFloat scale;&lt;/li&gt;
+  &lt;li&gt;@property (nonatomic,readonly) CGFloat velocity;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scale&lt;/code&gt;：捏合比例&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;velocity&lt;/code&gt;:捏合速度 = &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scale/second&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;uirotationgesturerecognizer旋转&quot;&gt;UIRotationGestureRecognizer（旋转）&lt;/h4&gt;
+&lt;p&gt;Rotation手势和Pinch手势类似，同样有两个手势：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;@property (nonatomic)          CGFloat rotation;&lt;/li&gt;
+  &lt;li&gt;@property (nonatomic,readonly) CGFloat velocity;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rotation&lt;/code&gt;:旋转弧度，注意，这里的单位是&lt;strong&gt;弧度&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;velocity&lt;/code&gt;:旋转速度&lt;/p&gt;
+
+&lt;h4 id=&quot;uilongpressgesturerecognizer长按&quot;&gt;UILongPressGestureRecognizer（长按）&lt;/h4&gt;
+
+&lt;p&gt;LongPress的属性：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;@property (nonatomic) NSUInteger numberOfTapsRequired;      // Default is 0.&lt;/li&gt;
+  &lt;li&gt;@property (nonatomic) NSUInteger numberOfTouchesRequired __TVOS_PROHIBITED;   // Default is 1.&lt;/li&gt;
+  &lt;li&gt;@property (nonatomic) CFTimeInterval minimumPressDuration;&lt;/li&gt;
+  &lt;li&gt;@property (nonatomic) CGFloat allowableMovement;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;numberOfTapsRequired&lt;/code&gt;和&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;numberOfTouchesRequired&lt;/code&gt;和Tap手势类似，都是指定触发需要的点击次数和手指数量，但是LongPress手势的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;numberOfTapsRequired&lt;/code&gt;是指定长按前需要点击的次数。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minimumPressDuration&lt;/code&gt;:触发时间&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;allowableMovement&lt;/code&gt;:允许长按时间触发前允许手指滑动的范围。若是你在长按时手指移动，该长按手势将会失败，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;allowableMovement&lt;/code&gt;设置你能容忍的滑动范围，默认是10.&lt;/p&gt;
+
+&lt;h1 id=&quot;变形&quot;&gt;变形&lt;/h1&gt;
+&lt;hr /&gt;
+&lt;p&gt;iOS的变形指的是图片的旋转、平移和缩放。这些变形可以和上面介绍的手势结合，完成许多变形操作。&lt;/p&gt;
+
+&lt;p&gt;说变形前我们来看看&lt;strong&gt;CGAffineTransform&lt;/strong&gt;，&lt;strong&gt;CGAffineTransform&lt;/strong&gt;为一个结构体：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;struct CGAffineTransform {
+    CGFloat a, b, c, d;
+    CGFloat tx, ty;
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;我们输出一个控件的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;transform&lt;/code&gt;看看&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;NSLog(@&quot;%@&quot;, NSStringFromCGAffineTransform(self.label.transform));
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;输出&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2016-12-22 17:01:19.211 手势[6489:1481987] [1, 0, 0, 1, 0, 0]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;我们可以看到输出了一个长度为6的数组：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[1, 0, 0, 1, 0, 0]&lt;/code&gt;，并且我们可以猜测对应结构体中的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[a, b, c, d, tx, ty]&lt;/code&gt;，并且默认的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;transform&lt;/code&gt;值就是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[1, 0, 0, 1, 0, 0]&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;想进一步了解可以看这篇&lt;a href=&quot;http://blog.csdn.net/ashiyanshi/article/details/48160429&quot;&gt;《iOS CGAffineTransform详解》&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;对iOS控件进行变形实际就是对控件&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;transform&lt;/code&gt;属性进行操作。&lt;/p&gt;
+
+&lt;p&gt;但是我们使用中，使用已经封装好的的API对控件进行变形处理。分别是：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;CGAffineTransformScale()&lt;/li&gt;
+  &lt;li&gt;CGAffineTransformTranslate()&lt;/li&gt;
+  &lt;li&gt;CGAffineTransformRotate()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;和：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;CGAffineTransformMakeScale（）&lt;/li&gt;
+  &lt;li&gt;CGAffineTransformMakeTranslate()&lt;/li&gt;
+  &lt;li&gt;CGAffineTransformMakeRotate()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这些API都是对设置&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CGAffineTransform&lt;/code&gt;的一个封装，针对&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[a, b, c, d, tx, ty]&lt;/code&gt;中不同的位置进行操作。&lt;/p&gt;
+
+&lt;p&gt;下面我们在ViewController创建一个&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UILabel&lt;/code&gt;控件。然后对它进行变形操作。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/006tNc79jw1fazplz4mvmj306x0cbt8m.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;缩放&quot;&gt;缩放&lt;/h4&gt;
+
+&lt;p&gt;首先来看一个缩放操作&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 缩放到90%（相对）
+self.label.transform = CGAffineTransformScale(self.label.transform, 0.9, 0.9);
+    
+NSLog(@&quot;%@&quot;, NSStringFromCGAffineTransform( self.label.transform));
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;输出：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2016-12-22 17:26:25.074 手势[6526:1564064] [0.90000000000000002, 0, 0, 0.90000000000000002, 0, 0]
+2016-12-22 17:26:26.096 手势[6526:1564064] [0.81000000000000005, 0, 0, 0.81000000000000005, 0, 0]
+2016-12-22 17:26:26.963 手势[6526:1564064] [0.72900000000000009, 0, 0, 0.72900000000000009, 0, 0]
+2016-12-22 17:26:28.830 手势[6526:1564064] [0.65610000000000013, 0, 0, 0.65610000000000013, 0, 0]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;我们再看看另一个缩放：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;self.label.transform = CGAffineTransformMakeScale(0.9, 0.9);
+
+NSLog(@&quot;%@&quot;, NSStringFromCGAffineTransform( self.label.transform));
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;输出&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2016-12-22 17:32:32.972 手势[6581:1600236] [0.90000000000000002, 0, 0, 0.90000000000000002, 0, 0]
+2016-12-22 17:32:34.164 手势[6581:1600236] [0.90000000000000002, 0, 0, 0.90000000000000002, 0, 0]
+2016-12-22 17:32:35.246 手势[6581:1600236] [0.90000000000000002, 0, 0, 0.90000000000000002, 0, 0]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;对比可以发现&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CGAffineTransformScale()&lt;/code&gt;与&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CGAffineTransformMakeScale()&lt;/code&gt;的区别在于，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CGAffineTransformScale()&lt;/code&gt;实在原理的基础上在进行缩放操作，而&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CGAffineTransformMakeScale()&lt;/code&gt;直接将缩放值设定为0.9不变了。&lt;/p&gt;
+
+&lt;p&gt;缩放操作变动的是构体中&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[a, b, c, d, tx, ty]&lt;/code&gt;的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a&lt;/code&gt;和&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;d&lt;/code&gt;，值和变形系数&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Scale&lt;/code&gt;是相对应的，大于1是放大，小于1是缩小。。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a&lt;/code&gt;是横向缩放， &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;d&lt;/code&gt;是纵向缩放。&lt;/p&gt;
+
+&lt;h4 id=&quot;平移&quot;&gt;平移&lt;/h4&gt;
+
+&lt;p&gt;先来看一个平移操作：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;self.label.transform = CGAffineTransformTranslate(self.label.transform, 10, 10);
+    NSLog(@&quot;%@&quot;, NSStringFromCGAffineTransform( self.label.transform));
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2016-12-22 17:40:38.568 手势[6608:1631232] [1, 0, 0, 1, 10, 10]
+2016-12-22 17:40:40.833 手势[6608:1631232] [1, 0, 0, 1, 20, 20]
+2016-12-22 17:40:41.834 手势[6608:1631232] [1, 0, 0, 1, 30, 30]
+2016-12-22 17:40:42.532 手势[6608:1631232] [1, 0, 0, 1, 40, 40]
+2016-12-22 17:40:43.162 手势[6608:1631232] [1, 0, 0, 1, 50, 50]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;我们可以看到label往右下角移动&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/006tNc79jw1fazply7kkpj306v0ca0sp.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;对应xy的正向坐标为右下角。&lt;/p&gt;
+
+&lt;h4 id=&quot;旋转&quot;&gt;旋转&lt;/h4&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;self.label.transform = CGAffineTransformRotate(self.label.transform, M_PI_2);
+NSLog(@&quot;%@&quot;, NSStringFromCGAffineTransform( self.label.transform));
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;输出：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2016-12-22 17:59:43.680 手势[6667:1717130] [6.123233995736766e-17, 1, -1, 6.123233995736766e-17, 0, 0]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/006tNc79gw1fazq3j2ud5j306z0cfdft.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;可以看到&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;label&lt;/code&gt;顺时针旋转了&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;π/2&lt;/code&gt;弧度（90°）。&lt;/p&gt;
+
+&lt;h1 id=&quot;手势结合变形&quot;&gt;手势结合变形&lt;/h1&gt;
+&lt;hr /&gt;
+&lt;p&gt;手势结合变形就是通过手势对控件变形处理。&lt;/p&gt;
+
+&lt;p&gt;上代码：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#import &quot;ViewController.h&quot;
+
+@interface ViewController ()&amp;lt;UIGestureRecognizerDelegate&amp;gt;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+//    CGAffineTransform *mytransform = self.imageView.transform;
+    self.imageView.userInteractionEnabled = YES;
+    //1双击 恢复
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+    tap.numberOfTapsRequired = 2;
+    tap.numberOfTouchesRequired = 1;
+    [self.imageView addGestureRecognizer:tap];
+    
+    //2拖拽
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pan:)];
+//    pan.delegate = self;
+    [self.imageView addGestureRecognizer:pan];
+    
+    //3捏合
+    UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(pinch:)];
+    pinch.delegate = self;
+    [self.imageView addGestureRecognizer:pinch];
+    
+    //4旋转
+    UIRotationGestureRecognizer *rotaion = [[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(rotaion:)];
+//    pinch.delegate = self;
+    [self.imageView addGestureRecognizer:rotaion];
+    
+    // 长按
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+    longPress.numberOfTapsRequired = 0;
+    longPress.minimumPressDuration = 1;
+//    longPress.allowableMovement = 3;
+    [self.imageView addGestureRecognizer:longPress];
+    
+}
+- (void)tap:(UITapGestureRecognizer *)sender{
+    
+    NSLog(@&quot;tap！&quot;);
+    
+    //恢复
+    self.imageView.transform = CGAffineTransformIdentity;
+    
+}
+- (void)pan:(UIPanGestureRecognizer *)sender{
+//    CGPoint center = self.imageView.center;
+//    if (center.x &amp;lt; 0){
+//        center.x = 0;
+//    }else{
+//        center.x += [sender translationInView:self.view].x;
+//    }
+//    
+//    center.y += [sender translationInView:self.view].y;
+//    self.imageView.center = center;
+    //将相对偏移量清零
+//    [sender setTranslation:CGPointMake(0, 0) inView:self.view];
+    
+    self.imageView.transform = CGAffineTransformTranslate(self.imageView.transform, [sender translationInView:self.imageView].x, [sender translationInView:self.imageView].y);
+    [sender setTranslation:CGPointZero inView:self.view];
+    
+}
+
+- (void)pinch:(UIPinchGestureRecognizer *)sender{
+    
+    CGFloat  scale = sender.scale;
+    self.imageView.transform = CGAffineTransformScale(self.imageView.transform, scale, scale);
+    [sender setScale:1];
+   
+}
+
+- (void)rotaion:(UIRotationGestureRecognizer *)sender{
+    //获取旋转弧度
+    CGFloat rotation = sender.rotation;
+    self.imageView.transform = CGAffineTransformRotate(self.imageView.transform, rotation);
+    sender.rotation = 0;
+    
+//    self.imageView.transform = CGAffineTransformMakeRotation(sender.rotation);
+    
+}
+
+- (void)longPress:(UILongPressGestureRecognizer *)sender {
+    
+    NSLog(@&quot;longPress:%@&quot;, sender);
+    
+    // 判断长按事件触发
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        self.imageView.transform = CGAffineTransformMake(1, 0, 0, 1, 0, 0);
+    }
+    
+}
+
+
+//希望两个手势共存
+//遵守 UIGestureRecognizerDelegate 协议
+//实现方法 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+//将要同时实现的手势设置代理 pinch.delegate = self; pinch.delegate = self;
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+    return YES;
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;有几点需要注意：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;给本身没有交互功能的控件（）imagView, UIlabel, View等）添加手势，要设置&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;userInteractionEnabled&lt;/code&gt;为&lt;strong&gt;YES&lt;/strong&gt;，否则识别不了手势&lt;/li&gt;
+  &lt;li&gt;想要手势共存需要：
+    &lt;ul&gt;
+      &lt;li&gt;遵守 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UIGestureRecognizerDelegate&lt;/code&gt; 协议&lt;/li&gt;
+      &lt;li&gt;实现&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer&lt;/code&gt;方法，返回&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YES&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;将要同时实现的手势设置代理 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pinch.delegate = self&lt;/code&gt;; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pinch.delegate = self&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;在storyboard中添加手势&quot;&gt;在storyboard中添加手势&lt;/h1&gt;
+
+&lt;p&gt;在&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;storyboard&lt;/code&gt;的控件栏中我们可以看到这些手势控件：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/006tNc79gw1fb0j188yh1j30780evwfq.jpg&quot; alt=&quot;storyboard中的手势控件&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;使用方法&quot;&gt;使用方法：&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;直接将手势控件拖到要添加的视图上&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/006tNc79gw1fb0ja1f8fnj30f206nwev.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;关联手势事件&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/006tNc79gw1fb0jaxllv6j30ol0be77b.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;设置手势属性&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/006tNc79gw1fb0jc5mon3j307c06ydgd.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;注意：若想同时识别多个手势，方法和上面相同，遵循协议，实现方法，设置代理，不过代理可以手动关联。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/006tNc79gw1fb0jokip2vj30ej0aq3zz.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 08 Nov 2024 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2024/11/08/Xv6-1/</link>
+        <guid isPermaLink="true">http://localhost:4000/2024/11/08/Xv6-1/</guid>
+        
+        <category>Ubuntu</category>
+        
+        <category>Vscode</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
