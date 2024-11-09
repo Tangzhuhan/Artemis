@@ -2,13 +2,12 @@
 <html lang="en">
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Every failure is leading towards success.">
-    <meta name="keywords" content="Hecate, iOS, Apple, iPhone">
+    <meta name="keywords"  content="Hecate, iOS, Apple, iPhone">
     <meta name="theme-color" content="#000000">
     
     <title>Xv6-基础入门 - HECATE</title>
@@ -166,7 +165,7 @@
 
     
 </style>
-<header class="intro-header">
+<header class="intro-header" >
     <div class="header-mask"></div>
     <div class="container">
         <div class="row">
@@ -228,7 +227,7 @@
 
 <p>从下图可以看出两者调用操作事件的次数是不同的：</p>
 
-<p><img src="http://ww3.sinaimg.cn/large/006tNc79gw1fb0neee6mlj30dw0aldgf.jpg" alt=""></p>
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79gw1fb0neee6mlj30dw0aldgf.jpg" alt="" /></p>
 
 <p>这些手势类有着以下共同的方法:</p>
 
@@ -378,7 +377,7 @@ typedef NS_ENUM(NSInteger, UIGestureRecognizerState) {
 <p><code class="language-plaintext highlighter-rouge">allowableMovement</code>:允许长按时间触发前允许手指滑动的范围。若是你在长按时手指移动，该长按手势将会失败，<code class="language-plaintext highlighter-rouge">allowableMovement</code>设置你能容忍的滑动范围，默认是10.</p>
 
 <h1 id="变形">变形</h1>
-<hr>
+<hr />
 <p>iOS的变形指的是图片的旋转、平移和缩放。这些变形可以和上面介绍的手势结合，完成许多变形操作。</p>
 
 <p>说变形前我们来看看<strong>CGAffineTransform</strong>，<strong>CGAffineTransform</strong>为一个结构体：</p>
@@ -424,7 +423,7 @@ typedef NS_ENUM(NSInteger, UIGestureRecognizerState) {
 
 <p>下面我们在ViewController创建一个<code class="language-plaintext highlighter-rouge">UILabel</code>控件。然后对它进行变形操作。</p>
 
-<p><img src="http://ww4.sinaimg.cn/large/006tNc79jw1fazplz4mvmj306x0cbt8m.jpg" alt=""></p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79jw1fazplz4mvmj306x0cbt8m.jpg" alt="" /></p>
 
 <h4 id="缩放">缩放</h4>
 
@@ -483,7 +482,7 @@ NSLog(@"%@", NSStringFromCGAffineTransform( self.label.transform));
 
 <p>我们可以看到label往右下角移动</p>
 
-<p><img src="http://ww1.sinaimg.cn/large/006tNc79jw1fazply7kkpj306v0ca0sp.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79jw1fazply7kkpj306v0ca0sp.jpg" alt="" /></p>
 
 <p>对应xy的正向坐标为右下角。</p>
 
@@ -497,12 +496,12 @@ NSLog(@"%@", NSStringFromCGAffineTransform( self.label.transform));
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2016-12-22 17:59:43.680 手势[6667:1717130] [6.123233995736766e-17, 1, -1, 6.123233995736766e-17, 0, 0]
 </code></pre></div></div>
 
-<p><img src="http://ww2.sinaimg.cn/large/006tNc79gw1fazq3j2ud5j306z0cfdft.jpg" alt=""></p>
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79gw1fazq3j2ud5j306z0cfdft.jpg" alt="" /></p>
 
 <p>可以看到<code class="language-plaintext highlighter-rouge">label</code>顺时针旋转了<code class="language-plaintext highlighter-rouge">π/2</code>弧度（90°）。</p>
 
 <h1 id="手势结合变形">手势结合变形</h1>
-<hr>
+<hr />
 <p>手势结合变形就是通过手势对控件变形处理。</p>
 
 <p>上代码：</p>
@@ -624,10 +623,8 @@ NSLog(@"%@", NSStringFromCGAffineTransform( self.label.transform));
   <li>想要手势共存需要：
     <ul>
       <li>遵守 <code class="language-plaintext highlighter-rouge">UIGestureRecognizerDelegate</code> 协议</li>
-      <li>实现<code class="language-plaintext highlighter-rouge">-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer</code>方法，返回<code class="language-plaintext highlighter-rouge">YES</code>
-</li>
-      <li>将要同时实现的手势设置代理 <code class="language-plaintext highlighter-rouge">pinch.delegate = self</code>; <code class="language-plaintext highlighter-rouge">pinch.delegate = self</code>
-</li>
+      <li>实现<code class="language-plaintext highlighter-rouge">-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer</code>方法，返回<code class="language-plaintext highlighter-rouge">YES</code></li>
+      <li>将要同时实现的手势设置代理 <code class="language-plaintext highlighter-rouge">pinch.delegate = self</code>; <code class="language-plaintext highlighter-rouge">pinch.delegate = self</code></li>
     </ul>
   </li>
 </ul>
@@ -636,7 +633,7 @@ NSLog(@"%@", NSStringFromCGAffineTransform( self.label.transform));
 
 <p>在<code class="language-plaintext highlighter-rouge">storyboard</code>的控件栏中我们可以看到这些手势控件：</p>
 
-<p><img src="http://ww1.sinaimg.cn/large/006tNc79gw1fb0j188yh1j30780evwfq.jpg" alt="storyboard中的手势控件"></p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79gw1fb0j188yh1j30780evwfq.jpg" alt="storyboard中的手势控件" /></p>
 
 <h4 id="使用方法">使用方法：</h4>
 
@@ -644,23 +641,23 @@ NSLog(@"%@", NSStringFromCGAffineTransform( self.label.transform));
   <li>
     <p>直接将手势控件拖到要添加的视图上</p>
 
-    <p><img src="http://ww3.sinaimg.cn/large/006tNc79gw1fb0ja1f8fnj30f206nwev.jpg" alt=""></p>
+    <p><img src="http://ww3.sinaimg.cn/large/006tNc79gw1fb0ja1f8fnj30f206nwev.jpg" alt="" /></p>
   </li>
   <li>
     <p>关联手势事件</p>
 
-    <p><img src="http://ww2.sinaimg.cn/large/006tNc79gw1fb0jaxllv6j30ol0be77b.jpg" alt=""></p>
+    <p><img src="http://ww2.sinaimg.cn/large/006tNc79gw1fb0jaxllv6j30ol0be77b.jpg" alt="" /></p>
   </li>
   <li>
     <p>设置手势属性</p>
 
-    <p><img src="http://ww2.sinaimg.cn/large/006tNc79gw1fb0jc5mon3j307c06ydgd.jpg" alt=""></p>
+    <p><img src="http://ww2.sinaimg.cn/large/006tNc79gw1fb0jc5mon3j307c06ydgd.jpg" alt="" /></p>
   </li>
 </ol>
 
 <p>注意：若想同时识别多个手势，方法和上面相同，遵循协议，实现方法，设置代理，不过代理可以手动关联。</p>
 
-<p><img src="http://ww4.sinaimg.cn/large/006tNc79gw1fb0jokip2vj30ej0aq3zz.jpg" alt=""></p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79gw1fb0jokip2vj30ej0aq3zz.jpg" alt="" /></p>
 
 
 
@@ -670,9 +667,9 @@ NSLog(@"%@", NSStringFromCGAffineTransform( self.label.transform));
                     
                     
                     <li class="next">
-                        <a href="/2024/11/09/Hello/" data-toggle="tooltip" data-placement="top" title="Hello &amp; Welcome">
+                        <a href="/2024/11/09/Hello/" data-toggle="tooltip" data-placement="top" title="Hello & Welcome">
                         Next<br>
-                        <span>Hello &amp; Welcome</span>
+                        <span>Hello & Welcome</span>
                         </a>
                     </li>
                     
@@ -819,10 +816,13 @@ NSLog(@"%@", NSStringFromCGAffineTransform( self.label.transform));
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright © HECATE on River 2024
+                    Copyright &copy; HECATE on River 2024
                     <br>
                     Theme on <a href="https://github.com/Tangzhuhan/Hecate.github.io.git">GitHub</a> |
-                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px" height="20px" src="https://ghbtns.com/github-btn.html?user=Tnagzhuhan&repo=Tnagzhuhan.github.io&type=star&count=true">
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=Tnagzhuhan&repo=Tnagzhuhan.github.io&type=star&count=true" >
                     </iframe>
                 </p>
             </div>
@@ -831,13 +831,13 @@ NSLog(@"%@", NSStringFromCGAffineTransform( self.label.transform));
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js%20"></script>
+<script src="/js/jquery.min.js "></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js%20"></script>
+<script src="/js/bootstrap.min.js "></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js%20"></script>
+<script src="/js/hux-blog.min.js "></script>
 
 <!-- Service Worker -->
 
@@ -997,7 +997,7 @@ NSLog(@"%@", NSStringFromCGAffineTransform( self.label.transform));
 
 
 <!-- Image to hack wechat -->
-<img src="/img/head.jpg" width="0" height="0">
+<img src="/img/head.jpg" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
 </body>
