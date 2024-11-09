@@ -1,7 +1,7 @@
 # Site settings
 title: HECATE on River
 SEOTitle: HECATE
-header-img: img/post-bg-desk.jpg
+header-img: E:/Gitpage/Artemis.github.io/img/post-bg-desk.jpg
 email: ceblog21msdn@163.com
 description: "Every failure is leading towards success."
 keyword: "Hecate, iOS, Apple, iPhone"
@@ -12,7 +12,7 @@ github_repo: "https://github.com/Tangzhuhan/Hecate.github.io.git" # you code rep
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "Little sheep runing in the mountain."
-sidebar-avatar: E:/Gitpage/Hecate/img/head.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: E:/Gitpage/Artemis.github.io/img/head.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 # SNS settings
 RSS: false
