@@ -80,6 +80,7 @@ GEM
 
 PLATFORMS
   x64-mingw-ucrt
+  x86_64-linux
 
 DEPENDENCIES
   http_parser.rb (~> 0.6.0)
@@ -92,4 +93,4 @@ DEPENDENCIES
   wdm (~> 0.1)
 
 BUNDLED WITH
-   2.5.22
+   2.2.17
