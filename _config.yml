@@ -110,3 +110,6 @@ friends: [
         href: "https://developer.apple.com/"
     }
 ]
+
+sass:
+  style: compressed
